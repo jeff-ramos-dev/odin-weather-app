@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    padding: 40px;
+}
+
+p {
+    margin-top: 20px;
+}
+
+input {
+    margin-top: 20px;
+}
+
