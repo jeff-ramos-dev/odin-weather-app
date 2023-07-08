@@ -12,13 +12,27 @@ body {
     display: grid;
     place-items: center;
     padding: 40px;
+    background: url('./images/weather-background.jpg');
+    background-position: center;
+    background-position-y: -200px
 }
 
 p {
     margin-top: 20px;
 }
 
+span {
+    color: rgb(70, 70, 70);
+}
+
+.category {
+    font-size: large;
+    font-weight: 700;
+    color: rgb(50, 50, 171);
+}
+
 input {
     margin-top: 20px;
+    background-color: rgb(107, 196, 226);
 }
 

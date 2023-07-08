@@ -1,7 +1,9 @@
 // import 'dotenv/config';
 
-const locationName = document.querySelector('.location');
-const locationNameSpan = document.querySelector('.location-data')
+const countryName = document.querySelector('.country');
+const countryNameSpan = document.querySelector('.country-data');
+const cityName = document.querySelector('.city');
+const cityNameSpan = document.querySelector('.city-data')
 const localTime = document.querySelector('.local-time');
 const localTimeSpan = document.querySelector('.local-time-data')
 const currentCond = document.querySelector('.current-cond');
@@ -20,22 +22,25 @@ const search = document.getElementById('search');
 async function getData(location) {
     const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=85cbece73a8846868d5174556230607&q=${location}`, {mode: "cors"});
     const weatherData = await response.json();
+    const hour = parseInt(weatherData.location.localtime.split(' ')[1].split(':')[0])
+    const minute = weatherData.location.localtime.split(' ')[1].split(':')[1]
 console.log(weatherData)
-    locationName.textContent = "location: "
-    locationNameSpan.textContent = weatherData.location.name
-    localTime.textContent = "local time: "
+    countryName.textContent = "Country: "
+    countryNameSpan.textContent = weatherData.location.country
+    cityName.textContent = "City: "
+    cityNameSpan.textContent = weatherData.location.name
+    localTime.textContent = "Local time: "
     localTimeSpan.textContent = `
-    ${weatherData.location.localtime.split(' ')[1]}
-    ${parseInt(weatherData.location.localtime.split(' ')[1].split(':')[0]) < 12 ? "am" : "pm"}`
-    currentCond.textContent = "current conditions: "
+    ${hour <= 12 ? hour : hour - 12}:${minute} ${hour < 12 ? "am" : "pm"}`
+    currentCond.textContent = "Current conditions: "
     currentCondSpan.textContent = weatherData.current.condition.text
-    currentTemp.textContent = "current temp: "
-    currentTempSpan.textContent = weatherData.current.temp_f
-    humidity.textContent = "humidity: "
-    humiditySpan.textContent = weatherData.current.humidity
-    windSpeed.textContent = "wind speed: "
+    currentTemp.textContent = "Current temp: "
+    currentTempSpan.textContent = `${weatherData.current.temp_f}°F`
+    humidity.textContent = "Humidity: "
+    humiditySpan.textContent = `${weatherData.current.humidity}%`
+    windSpeed.textContent = "Wind speed: "
     windSpeedSpan.textContent = `${weatherData.current.wind_mph}mph`
-    precipitation.textContent = "precipitation: "
+    precipitation.textContent = "Precipitation: "
     precipitationSpan.textContent = `${weatherData.current.precip_in}in`
 
     return weatherData
