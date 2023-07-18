@@ -1,25 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
 
-    <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" type="module" defer></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+
+  <link rel="stylesheet" href="./style.css">
+  <script src="./script.js" type="module" defer></script>
 </head>
+
 <body>
-    <h1>Weather App</h1> 
-    <input type="search" name="search" id="search">
-    <div class="container">
-        <p class="country category"></p><span class="country-data"></span>
-        <p class="city category"></p><span class="city-data"></span>
-        <p class="local-time category"></p><span class="local-time-data"></span>
-        <p class="current-cond category"></p><span class="current-cond-data"></span>
-        <p class="current-temp category"></p><span class="current-temp-data"></span>
-        <p class="humidity category"></p><span class="humidity-data"></span>
-        <p class="wind-speed category"></p><span class="wind-speed-data"></span>
-        <p class="precipitation category"></p><span class="precipitation-data"></span>
-    </div>
+  <h1>What's the Weather?</h1>
+  <input type="search" name="search" id="search" placeholder="search...">
+  <p class="location"></p>
+  <p class="time"></p>
+  <h1 class="temp"></h1>
+  <div class="condition">
+    <img src="" alt="" class="condition-img">
+    <p class="condition-text"></p>
+  </div>
+  <p class="humid category">Humidity: <span class="humid-data"></span></p>
+  <p class="wind category">Wind-Speed: <span class="wind-data"></span></p>
+  <p class="precip category">Precipitation: <span class="precip-data"></span></p>
+  <p class="uv category">UV Index: <span class="uv-data"></span></p>
+  <p class="vis category">Visibility: <span class="vis-data"></span></p>
 </body>
+
 </html>

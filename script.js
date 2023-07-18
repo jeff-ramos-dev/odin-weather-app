@@ -17,33 +17,62 @@ const windSpeedSpan = document.querySelector('.wind-speed-data')
 const precipitation = document.querySelector('.precipitation');
 const precipitationSpan = document.querySelector('.precipitation-data')
 
+const location = document.querySelector('.location');
+const time = document.querySelector('.time');
+const temp = document.querySelector('.temp');
+const condition = document.querySelector('.condition-text');
+const conditionImg = document.querySelector('.condition-img');
+const humid = document.querySelector('.humid-data');
+const wind = document.querySelector('.wind-data');
+const precip = document.querySelector('.precip-data');
+const uv = document.querySelector('.uv-data');
+const vis = document.querySelector('.vis-data');
+
 const search = document.getElementById('search');
 
 async function getData(location) {
-    const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=85cbece73a8846868d5174556230607&q=${location}`, {mode: "cors"});
-    const weatherData = await response.json();
-    const hour = parseInt(weatherData.location.localtime.split(' ')[1].split(':')[0])
-    const minute = weatherData.location.localtime.split(' ')[1].split(':')[1]
-console.log(weatherData)
-    countryName.textContent = "Country: "
-    countryNameSpan.textContent = weatherData.location.country
-    cityName.textContent = "City: "
-    cityNameSpan.textContent = weatherData.location.name
-    localTime.textContent = "Local time: "
-    localTimeSpan.textContent = `
-    ${hour <= 12 ? hour : hour - 12}:${minute} ${hour < 12 ? "am" : "pm"}`
-    currentCond.textContent = "Current conditions: "
-    currentCondSpan.textContent = weatherData.current.condition.text
-    currentTemp.textContent = "Current temp: "
-    currentTempSpan.textContent = `${weatherData.current.temp_f}°F`
-    humidity.textContent = "Humidity: "
-    humiditySpan.textContent = `${weatherData.current.humidity}%`
-    windSpeed.textContent = "Wind speed: "
-    windSpeedSpan.textContent = `${weatherData.current.wind_mph}mph`
-    precipitation.textContent = "Precipitation: "
-    precipitationSpan.textContent = `${weatherData.current.precip_in}in`
+  const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=85cbece73a8846868d5174556230607&q=${location}`, { mode: "cors" });
+  const weatherData = await response.json();
+  const hour = parseInt(weatherData.location.localtime.split(' ')[1].split(':')[0])
+  const minute = weatherData.location.localtime.split(' ')[1].split(':')[1]
+  console.log(weatherData)
 
-    return weatherData
+  const currTime = `
+    ${hour <= 12 ? hour : hour - 12}:${minute} ${hour < 12 ? "am" : "pm"}
+  `
+  time.textContent = currTime
+  temp.textContent = `${weatherData.current.temp_f}\u{00B0}F`
+  condition.textContent = `${weatherData.current.condition.text}`
+  conditionImg.src = `./images/${weatherData.current.condition.text}.png`
+  humid.textContent = `${weatherData.current.humidity} %`
+  wind.textContent = `${weatherData.current.wind_mph} mph`
+  precip.textContent = `${weatherData.current.precip_in} in`
+  uv.textContent = `${weatherData.current.uv} (${weatherData.current.uv < 3 ? "Low" :
+    weatherData.current.uv < 6 ? "Moderate" :
+      weatherData.current.uv < 8 ? "High" :
+        weatherData.current.uv < 9 ? "Very High" :
+          "Extreme"})`
+  vis.textContent = `${weatherData.current.vis_miles} mi`
+
+  countryName.textContent = "Country: "
+  countryNameSpan.textContent = weatherData.location.country
+  cityName.textContent = "City: "
+  cityNameSpan.textContent = weatherData.location.name
+  localTime.textContent = "Local time: "
+  localTimeSpan.textContent = `
+    ${hour <= 12 ? hour : hour - 12}:${minute} ${hour < 12 ? "am" : "pm"}`
+  currentCond.textContent = "Current conditions: "
+  currentCondSpan.textContent = weatherData.current.condition.text
+  currentTemp.textContent = "Current temp: "
+  currentTempSpan.textContent = `${weatherData.current.temp_f}°F`
+  humidity.textContent = "Humidity: "
+  humiditySpan.textContent = `${weatherData.current.humidity}%`
+  windSpeed.textContent = "Wind speed: "
+  windSpeedSpan.textContent = `${weatherData.current.wind_mph}mph`
+  precipitation.textContent = "Precipitation: "
+  precipitationSpan.textContent = `${weatherData.current.precip_in}in`
+
+  return weatherData
 }
 
 search.value = "los angeles"
@@ -51,7 +80,7 @@ search.value = "los angeles"
 getData("los angeles")
 
 search.addEventListener('input', e => {
-    getData(search.value);
+  getData(search.value);
 })
 
 // FULL WEATHER JSON OBJECT----
