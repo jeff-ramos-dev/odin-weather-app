@@ -5,16 +5,19 @@
   list-style-type: none;
   text-decoration: none;
   color: black;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif; 
 }
 
 body {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
   place-items: center;
   padding: 40px;
   background: url('./images/weather-background.jpg');
   background-position: center;
-  background-position-y: 900px
+  background-size: cover;
 }
 
 p {
@@ -25,6 +28,17 @@ span {
   color: rgb(70, 70, 70);
 }
 
+.title {
+  font-family: 'Oleo SCript Swash Caps', cursive; 
+  font-size: 4rem;
+  text-align: center;
+}
+
+.place {
+  font-weight: bold;
+  font-family: ''
+}
+
 .category {
   font-size: large;
   font-weight: 700;
@@ -32,22 +46,36 @@ span {
 }
 
 input {
-  margin-top: 20px;
+  height: 2rem;
+  width: 300px;
+  margin-top: 40px;
   padding-left: 5px;
 }
 
 .condition {
   display: grid;
-  width: 100px;
+  width: 300px;
+  margin-top: 20px;
   place-items: center;
   grid-template-columns: 1fr 2fr;
 }
 
 .condition-img {
-  height: 30px;
-  width: 30px;
+  height: 70px;
+  width: fit-content;
 }
 
 .condition-text {
   margin: 0;
+  font-size: 1.5rem
+}
+
+.time {
+  margin-top: 40px;
+  font-size: 2rem;
+}
+
+.temp {
+  margin-top: 40px;
+  font-size: 4rem;
 }

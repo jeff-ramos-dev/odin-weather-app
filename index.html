@@ -7,24 +7,30 @@
   <title>Weather App</title>
 
   <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&family=Oleo+Script+Swash+Caps:wght@700&display=swap" rel="stylesheet">
   <script src="./script.js" type="module" defer></script>
 </head>
 
 <body>
-  <h1>What's the Weather?</h1>
+  <h1 class="title">What's the Weather?</h1>
   <input type="search" name="search" id="search" placeholder="search...">
-  <p class="location"></p>
-  <p class="time"></p>
-  <h1 class="temp"></h1>
-  <div class="condition">
-    <img src="" alt="" class="condition-img">
-    <p class="condition-text"></p>
+  <div class="container">
+    
+    <p class="location"></p>
+    <p class="time"></p>
+    <h1 class="temp"></h1>
+    <div class="condition">
+      <img src="" alt="" class="condition-img">
+      <p class="condition-text"></p>
+    </div>
+    <p class="humid category">Humidity: <span class="humid-data"></span></p>
+    <p class="wind category">Wind-Speed: <span class="wind-data"></span></p>
+    <p class="precip category">Precipitation: <span class="precip-data"></span></p>
+    <p class="uv category">UV Index: <span class="uv-data"></span></p>
+    <p class="vis category">Visibility: <span class="vis-data"></span></p>
   </div>
-  <p class="humid category">Humidity: <span class="humid-data"></span></p>
-  <p class="wind category">Wind-Speed: <span class="wind-data"></span></p>
-  <p class="precip category">Precipitation: <span class="precip-data"></span></p>
-  <p class="uv category">UV Index: <span class="uv-data"></span></p>
-  <p class="vis category">Visibility: <span class="vis-data"></span></p>
 </body>
 
 </html>
