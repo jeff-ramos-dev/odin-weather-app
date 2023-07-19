@@ -16,7 +16,7 @@ body {
   height: 100vh;
   place-items: center;
   padding: 40px;
-  background: url('../images/weather-background.jpg');
+  background: url('./images/weather-background.jpg');
   background-position: center;
   background-size: cover;
 }

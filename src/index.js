@@ -1,14 +1,14 @@
-import cloudy from '../images/Cloudy.png';
-import fog from '../images/Fog.png';
-import heavyRain from '../images/Heavy Rain.png';
-import lightning from '../images/Lightning.png';
-import partlyCloudy from '../images/Partly Cloudy.png';
-import rain from '../images/Rain.png';
-import snowAndRain from '../images/Snow and Rain.png';
-import snow from '../images/Snow.png';
-import sprinkle from '../images/Sprinkle.png';
-import sunny from '../images/Sunny.png';
-import weatherBackground from '../images/weather-background.jpg';
+import cloudy from './images/Cloudy.png';
+import fog from './images/Fog.png';
+import heavyRain from './images/Heavy Rain.png';
+import lightning from './images/Lightning.png';
+import partlyCloudy from './images/Partly Cloudy.png';
+import rain from './images/Rain.png';
+import snowAndRain from './images/Snow and Rain.png';
+import snow from './images/Snow.png';
+import sprinkle from './images/Sprinkle.png';
+import sunny from './images/Sunny.png';
+import weatherBackground from './images/weather-background.jpg';
 import './style.css';
 
 const place = document.querySelector('.location');
@@ -76,9 +76,10 @@ const conditionDict = {
 	"Moderate or heavy snow with thunder": lightning
 };
 
-async function getData(location) {
-  const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=85cbece73a8846868d5174556230607&q=${location}`, { mode: "cors" });
+async function getData(loc) {
+  const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=85cbece73a8846868d5174556230607&q=${loc}`, { mode: "cors" });
   const weatherData = await response.json();
+
   const hour = parseInt(weatherData.location.localtime.split(' ')[1].split(':')[0])
   const minute = weatherData.location.localtime.split(' ')[1].split(':')[1]
   console.log(weatherData)
