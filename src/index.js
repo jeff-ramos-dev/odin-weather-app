@@ -1,4 +1,15 @@
-// import 'dotenv/config';
+import cloudy from '../images/Cloudy.png';
+import fog from '../images/Fog.png';
+import heavyRain from '../images/Heavy Rain.png';
+import lightning from '../images/Lightning.png';
+import partlyCloudy from '../images/Partly Cloudy.png';
+import rain from '../images/Rain.png';
+import snowAndRain from '../images/Snow and Rain.png';
+import snow from '../images/Snow.png';
+import sprinkle from '../images/Sprinkle.png';
+import sunny from '../images/Sunny.png';
+import weatherBackground from '../images/weather-background.jpg';
+import './style.css';
 
 const place = document.querySelector('.location');
 const time = document.querySelector('.time');
@@ -14,56 +25,56 @@ const vis = document.querySelector('.vis-data');
 const search = document.getElementById('search');
 
 const conditionDict = {
-	"Sunny": "./images/Sunny.png",
-  "Clear": "./images/Sunny.png",
-	"Partly cloudy": "./images/Partly Cloudy.png",
-  "Cloudy": "./images/Cloudy.png",
-  "Overcast": "./images/Cloudy.png",
-  "Mist": "./images/Fog.png",
-  "Patchy rain possible": "./images/Rain.png",
-  "Patchy snow possible": "./images/Snow.png",
-  "Patchy sleet possible": "./images/Snow.png",
-  "Patchy freezing drizzle possible": "./images/Sprinkle.png",
-  "Thundery outbreaks possible": "./images/Lightning.png",
-  "Blowing snow": "./images/Snow.png",
-  "Blizzard": "./images/Snow.png",
-  "Fog": "./images/Fog.png",
-  "Freezing fog": "./images/Fog.png",
-  "Patchy light drizzle": "./images/Sprinkle.png",
-  "Light drizzle": "./images/Sprinkle.png",
-  "Freezing drizzle": "./images/Rain.png",
-  "Heavy freezing drizzle": "./images/Heavy Rain.png",
-  "Patchy light rain": "./images/Rain.png",
-  "Light rain": "./images/Rain.png",
-  "Moderate rain at times": "./images/Rain.png",
-  "Moderate rain": "./images/Rain.png",
-  "Heavy rain at times": "./images/Heavy Rain.png",
-  "Heavy rain": "./images/Heavy Rain.png",
-  "Light freezing rain": "./images/Rain.png",
-  "Moderate or heavy freezing rain": "./images/Heavy Rain.png",
-  "Light sleet": "./images/Snow.png",
-  "Moderate or heavy sleet": "./images/Snow.png",
-  "Patchy light snow": "./images/Snow.png",
-  "Light snow": "./images/Snow.png",
-  "Patchy moderate snow": "./images/Snow.png",
-  "Moderate snow": "./images/Snow.png",
-  "Patchy heavy snow": "./images/Snow.png",
-  "Heavy snow": "./images/Snow.png",
-  "Ice pellets": "./images/Snow.png",
-  "Light rain shower": "./images/Rain.png",
-  "Moderate or heavy rain shower": "./images/Heavy Rain.png",
-  "Torrential rain shower": "./images/Rain.png",
-  "Light sleet showers": "./images/Snow.png",
-  "Moderate or heavy sleet showers": "./images/Snow.png",
-  "Light snow showers": "./images/Snow.png",
-  "Moderate or heavy snow showers": "./images/Snow.png",
-  "Light showers of ice pellets": "./images/Snow.png",
-  "Moderate or heavy showers of ice pellets": "./images/Snow and Rain.png",
-  "Patchy light rain with thunder": "./images/Lightning.png",
-  "Moderate or heavy rain with thunder": "./images/Lightning.png",
-  "Patchy light snow with thunder": "./images/Lightning.png",
-	"Moderate or heavy snow with thunder": "./images/Lightning.png"
-}
+	"Sunny": sunny, 
+  "Clear": sunny,
+	"Partly cloudy": partlyCloudy,
+  "Cloudy": cloudy,
+  "Overcast": cloudy,
+  "Mist": fog,
+  "Patchy rain possible": rain,
+  "Patchy snow possible": snow,
+  "Patchy sleet possible": snow,
+  "Patchy freezing drizzle possible": sprinkle,
+  "Thundery outbreaks possible": lightning,
+  "Blowing snow": snow,
+  "Blizzard": snow,
+  "Fog": fog,
+  "Freezing fog": fog,
+  "Patchy light drizzle": sprinkle,
+  "Light drizzle": sprinkle,
+  "Freezing drizzle": rain,
+  "Heavy freezing drizzle": heavyRain,
+  "Patchy light rain": rain,
+  "Light rain": rain,
+  "Moderate rain at times": rain,
+  "Moderate rain": rain,
+  "Heavy rain at times": heavyRain,
+  "Heavy rain": heavyRain,
+  "Light freezing rain": rain,
+  "Moderate or heavy freezing rain": heavyRain,
+  "Light sleet": snow,
+  "Moderate or heavy sleet": snow,
+  "Patchy light snow": snow,
+  "Light snow": snow,
+  "Patchy moderate snow": snow,
+  "Moderate snow": snow,
+  "Patchy heavy snow": snow,
+  "Heavy snow": snow,
+  "Ice pellets": snow,
+  "Light rain shower": rain,
+  "Moderate or heavy rain shower": heavyRain,
+  "Torrential rain shower": rain,
+  "Light sleet showers": snow,
+  "Moderate or heavy sleet showers": snow,
+  "Light snow showers": snow,
+  "Moderate or heavy snow showers": snow,
+  "Light showers of ice pellets": snow,
+  "Moderate or heavy showers of ice pellets": snowAndRain,
+  "Patchy light rain with thunder": lightning,
+  "Moderate or heavy rain with thunder": lightning,
+  "Patchy light snow with thunder": lightning,
+	"Moderate or heavy snow with thunder": lightning
+};
 
 async function getData(location) {
   const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=85cbece73a8846868d5174556230607&q=${location}`, { mode: "cors" });
