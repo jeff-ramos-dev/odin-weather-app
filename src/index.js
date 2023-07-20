@@ -163,72 +163,8 @@ async function updateWeatherFields(query) {
       "maxWind": data.forecast.forecastday[2].day.maxwind_mph,
       "minTemp": data.forecast.forecastday[2].day.mintemp_f,
       "minTemp": data.forecast.forecastday[2].day.mintemp_f,
-    },
-    {
-      "name": weekdays[currDay + 3 > 6 ? currDay + 3 - 7 : currDay + 3],
-      "sunrise": data.forecast.forecastday[3].astro.sunrise,
-      "sunset": data.forecast.forecastday[3].astro.sunset,
-      "sunset": data.forecast.forecastday[3].astro.sunset,
-      "avgHumidity": data.forecast.forecastday[3].day.avghumidity,
-      "avgTemp": data.forecast.forecastday[3].day.avgtemp_f,
-      "chanceOfRain": data.forecast.forecastday[3].day.daily_chance_of_rain,
-      "chanceOfSnow": data.forecast.forecastday[3].day.daily_chance_of_snow,
-      "willRain": data.forecast.forecastday[3].day.daily_will_it_rain,
-      "willSnow": data.forecast.forecastday[3].day.daily_will_it_snow,
-      "maxTemp": data.forecast.forecastday[3].day.maxtemp_f,
-      "maxWind": data.forecast.forecastday[3].day.maxwind_mph,
-      "minTemp": data.forecast.forecastday[3].day.mintemp_f,
-      "minTemp": data.forecast.forecastday[3].day.mintemp_f,
-    },
-    {
-      "name": weekdays[currDay + 4 > 6 ? currDay + 4 - 7 : currDay + 4],
-      "sunrise": data.forecast.forecastday[4].astro.sunrise,
-      "sunset": data.forecast.forecastday[4].astro.sunset,
-      "sunset": data.forecast.forecastday[4].astro.sunset,
-      "avgHumidity": data.forecast.forecastday[4].day.avghumidity,
-      "avgTemp": data.forecast.forecastday[4].day.avgtemp_f,
-      "chanceOfRain": data.forecast.forecastday[4].day.daily_chance_of_rain,
-      "chanceOfSnow": data.forecast.forecastday[4].day.daily_chance_of_snow,
-      "willRain": data.forecast.forecastday[4].day.daily_will_it_rain,
-      "willSnow": data.forecast.forecastday[4].day.daily_will_it_snow,
-      "maxTemp": data.forecast.forecastday[4].day.maxtemp_f,
-      "maxWind": data.forecast.forecastday[4].day.maxwind_mph,
-      "minTemp": data.forecast.forecastday[4].day.mintemp_f,
-      "minTemp": data.forecast.forecastday[4].day.mintemp_f,
-    },
-    {
-      "name": weekdays[currDay + 5 > 6 ? currDay + 5 - 7 : currDay + 5],
-      "sunrise": data.forecast.forecastday[5].astro.sunrise,
-      "sunset": data.forecast.forecastday[5].astro.sunset,
-      "sunset": data.forecast.forecastday[5].astro.sunset,
-      "avgHumidity": data.forecast.forecastday[5].day.avghumidity,
-      "avgTemp": data.forecast.forecastday[5].day.avgtemp_f,
-      "chanceOfRain": data.forecast.forecastday[5].day.daily_chance_of_rain,
-      "chanceOfSnow": data.forecast.forecastday[5].day.daily_chance_of_snow,
-      "willRain": data.forecast.forecastday[5].day.daily_will_it_rain,
-      "willSnow": data.forecast.forecastday[5].day.daily_will_it_snow,
-      "maxTemp": data.forecast.forecastday[5].day.maxtemp_f,
-      "maxWind": data.forecast.forecastday[5].day.maxwind_mph,
-      "minTemp": data.forecast.forecastday[5].day.mintemp_f,
-      "minTemp": data.forecast.forecastday[5].day.mintemp_f,
-    },
-    {
-      "name": weekdays[currDay + 6 > 6 ? currDay + 6 - 7 : currDay + 6],
-      "sunrise": data.forecast.forecastday[6].astro.sunrise,
-      "sunset": data.forecast.forecastday[6].astro.sunset,
-      "sunset": data.forecast.forecastday[6].astro.sunset,
-      "avgHumidity": data.forecast.forecastday[6].day.avghumidity,
-      "avgTemp": data.forecast.forecastday[6].day.avgtemp_f,
-      "chanceOfRain": data.forecast.forecastday[6].day.daily_chance_of_rain,
-      "chanceOfSnow": data.forecast.forecastday[6].day.daily_chance_of_snow,
-      "willRain": data.forecast.forecastday[6].day.daily_will_it_rain,
-      "willSnow": data.forecast.forecastday[6].day.daily_will_it_snow,
-      "maxTemp": data.forecast.forecastday[6].day.maxtemp_f,
-      "maxWind": data.forecast.forecastday[6].day.maxwind_mph,
-      "minTemp": data.forecast.forecastday[6].day.mintemp_f,
-      "minTemp": data.forecast.forecastday[6].day.mintemp_f,
-    },
-  ]
+    }
+  ];
 
   const currTime = `
     ${hour <= 12 ? hour : hour - 12}:${minute} ${hour < 12 ? "am" : "pm"}
@@ -258,19 +194,6 @@ async function updateWeatherFields(query) {
   day3name.textContent = days[2].name;
   day3temp.textContent = `Avg. Temp: ${days[2].avgTemp}\u00B0F`;
   day3chanceOfRain.textContent = `${days[2].chanceOfRain}% Chance of Rain`;
-  day4name.textContent = days[3].name;
-  day4temp.textContent = `Avg. Temp: ${days[3].avgTemp}\u00B0F`;
-  day4chanceOfRain.textContent = `${days[3].chanceOfRain}% Chance of Rain`;
-  day5name.textContent = days[4].name;
-  day5temp.textContent = `Avg. Temp: ${days[4].avgTemp}\u00B0F`;
-  day5chanceOfRain.textContent = `${days[4].chanceOfRain}% Chance of Rain`;
-  day6name.textContent = days[5].name;
-  day6temp.textContent = `Avg. Temp: ${days[5].avgTemp}\u00B0F`;
-  day6chanceOfRain.textContent = `${days[5].chanceOfRain}% Chance of Rain`;
-  day7name.textContent = days[6].name;
-  day7temp.textContent = `Avg. Temp: ${days[6].avgTemp}\u00B0F`;
-  day7chanceOfRain.textContent = `${days[6].chanceOfRain}% Chance of Rain`;
-
 };
 
 
