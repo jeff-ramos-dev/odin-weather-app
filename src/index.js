@@ -22,6 +22,29 @@ const precip = document.querySelector('.precip-data');
 const uv = document.querySelector('.uv-data');
 const vis = document.querySelector('.vis-data');
 
+const day1name = document.querySelector('.one>.weekday');
+const day1temp = document.querySelector('.one>.forecast-data>.avg-temp');
+const day1chanceOfRain = document.querySelector('.one>.forecast-data>.chance-of-rain');
+const day2name = document.querySelector('.two>.weekday');
+const day2temp = document.querySelector('.two>.forecast-data>.avg-temp');
+const day2chanceOfRain = document.querySelector('.two>.forecast-data>.chance-of-rain');
+const day3name = document.querySelector('.three>.weekday');
+const day3temp = document.querySelector('.three>.forecast-data>.avg-temp');
+const day3chanceOfRain = document.querySelector('.three>.forecast-data>.chance-of-rain');
+const day4name = document.querySelector('.four>.weekday');
+const day4temp = document.querySelector('.four>.forecast-data>.avg-temp');
+const day4chanceOfRain = document.querySelector('.four>.forecast-data>.chance-of-rain');
+const day5name = document.querySelector('.five>.weekday');
+const day5temp = document.querySelector('.five>.forecast-data>.avg-temp');
+const day5chanceOfRain = document.querySelector('.five>.forecast-data>.chance-of-rain');
+const day6name = document.querySelector('.six>.weekday');
+const day6temp = document.querySelector('.six>.forecast-data>.avg-temp');
+const day6chanceOfRain = document.querySelector('.six>.forecast-data>.chance-of-rain');
+const day7name = document.querySelector('.seven>.weekday');
+const day7temp = document.querySelector('.seven>.forecast-data>.avg-temp');
+const day7chanceOfRain = document.querySelector('.seven>.forecast-data>.chance-of-rain');
+
+
 const search = document.getElementById('search');
 
 const conditionDict = {
@@ -76,42 +99,188 @@ const conditionDict = {
 	"Moderate or heavy snow with thunder": lightning
 };
 
-async function getData(loc) {
-  const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=85cbece73a8846868d5174556230607&q=${loc}`, { mode: "cors" });
-  const weatherData = await response.json();
+async function getWeatherData(loc) {
+  const response = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=85cbece73a8846868d5174556230607&q=${loc}&days=7`, { mode: "cors" });
+  const forecastData = await response.json();
+  return forecastData;
+};
 
-  const hour = parseInt(weatherData.location.localtime.split(' ')[1].split(':')[0])
-  const minute = weatherData.location.localtime.split(' ')[1].split(':')[1]
-  console.log(weatherData)
+async function updateWeatherFields(query) {
+  const data = await getWeatherData(query);
+  const hour = parseInt(data.location.localtime.split(' ')[1].split(':')[0]);
+  const minute = data.location.localtime.split(' ')[1].split(':')[1];
+  console.log(data);
+
+  const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const today = new Date();
+  const currDay = today.getDay();
+
+  const days = [
+    {
+      "name": weekdays[currDay],
+      "sunrise": data.forecast.forecastday[0].astro.sunrise,
+      "sunset": data.forecast.forecastday[0].astro.sunset,
+      "sunset": data.forecast.forecastday[0].astro.sunset,
+      "avgHumidity": data.forecast.forecastday[0].day.avghumidity,
+      "avgTemp": data.forecast.forecastday[0].day.avgtemp_f,
+      "chanceOfRain": data.forecast.forecastday[0].day.daily_chance_of_rain,
+      "chanceOfSnow": data.forecast.forecastday[0].day.daily_chance_of_snow,
+      "willRain": data.forecast.forecastday[0].day.daily_will_it_rain,
+      "willSnow": data.forecast.forecastday[0].day.daily_will_it_snow,
+      "maxTemp": data.forecast.forecastday[0].day.maxtemp_f,
+      "maxWind": data.forecast.forecastday[0].day.maxwind_mph,
+      "minTemp": data.forecast.forecastday[0].day.mintemp_f,
+      "minTemp": data.forecast.forecastday[0].day.mintemp_f,
+    },
+    {
+      "name": weekdays[currDay + 1 > 6 ? currDay + 1 - 7 : currDay + 1],
+      "sunrise": data.forecast.forecastday[1].astro.sunrise,
+      "sunset": data.forecast.forecastday[1].astro.sunset,
+      "sunset": data.forecast.forecastday[1].astro.sunset,
+      "avgHumidity": data.forecast.forecastday[1].day.avghumidity,
+      "avgTemp": data.forecast.forecastday[1].day.avgtemp_f,
+      "chanceOfRain": data.forecast.forecastday[1].day.daily_chance_of_rain,
+      "chanceOfSnow": data.forecast.forecastday[1].day.daily_chance_of_snow,
+      "willRain": data.forecast.forecastday[1].day.daily_will_it_rain,
+      "willSnow": data.forecast.forecastday[1].day.daily_will_it_snow,
+      "maxTemp": data.forecast.forecastday[1].day.maxtemp_f,
+      "maxWind": data.forecast.forecastday[1].day.maxwind_mph,
+      "minTemp": data.forecast.forecastday[1].day.mintemp_f,
+      "minTemp": data.forecast.forecastday[1].day.mintemp_f,
+    },
+    {
+      "name": weekdays[currDay + 2 > 6 ? currDay + 2 - 7 : currDay + 2],
+      "sunrise": data.forecast.forecastday[2].astro.sunrise,
+      "sunset": data.forecast.forecastday[2].astro.sunset,
+      "sunset": data.forecast.forecastday[2].astro.sunset,
+      "avgHumidity": data.forecast.forecastday[2].day.avghumidity,
+      "avgTemp": data.forecast.forecastday[2].day.avgtemp_f,
+      "chanceOfRain": data.forecast.forecastday[2].day.daily_chance_of_rain,
+      "chanceOfSnow": data.forecast.forecastday[2].day.daily_chance_of_snow,
+      "willRain": data.forecast.forecastday[2].day.daily_will_it_rain,
+      "willSnow": data.forecast.forecastday[2].day.daily_will_it_snow,
+      "maxTemp": data.forecast.forecastday[2].day.maxtemp_f,
+      "maxWind": data.forecast.forecastday[2].day.maxwind_mph,
+      "minTemp": data.forecast.forecastday[2].day.mintemp_f,
+      "minTemp": data.forecast.forecastday[2].day.mintemp_f,
+    },
+    {
+      "name": weekdays[currDay + 3 > 6 ? currDay + 3 - 7 : currDay + 3],
+      "sunrise": data.forecast.forecastday[3].astro.sunrise,
+      "sunset": data.forecast.forecastday[3].astro.sunset,
+      "sunset": data.forecast.forecastday[3].astro.sunset,
+      "avgHumidity": data.forecast.forecastday[3].day.avghumidity,
+      "avgTemp": data.forecast.forecastday[3].day.avgtemp_f,
+      "chanceOfRain": data.forecast.forecastday[3].day.daily_chance_of_rain,
+      "chanceOfSnow": data.forecast.forecastday[3].day.daily_chance_of_snow,
+      "willRain": data.forecast.forecastday[3].day.daily_will_it_rain,
+      "willSnow": data.forecast.forecastday[3].day.daily_will_it_snow,
+      "maxTemp": data.forecast.forecastday[3].day.maxtemp_f,
+      "maxWind": data.forecast.forecastday[3].day.maxwind_mph,
+      "minTemp": data.forecast.forecastday[3].day.mintemp_f,
+      "minTemp": data.forecast.forecastday[3].day.mintemp_f,
+    },
+    {
+      "name": weekdays[currDay + 4 > 6 ? currDay + 4 - 7 : currDay + 4],
+      "sunrise": data.forecast.forecastday[4].astro.sunrise,
+      "sunset": data.forecast.forecastday[4].astro.sunset,
+      "sunset": data.forecast.forecastday[4].astro.sunset,
+      "avgHumidity": data.forecast.forecastday[4].day.avghumidity,
+      "avgTemp": data.forecast.forecastday[4].day.avgtemp_f,
+      "chanceOfRain": data.forecast.forecastday[4].day.daily_chance_of_rain,
+      "chanceOfSnow": data.forecast.forecastday[4].day.daily_chance_of_snow,
+      "willRain": data.forecast.forecastday[4].day.daily_will_it_rain,
+      "willSnow": data.forecast.forecastday[4].day.daily_will_it_snow,
+      "maxTemp": data.forecast.forecastday[4].day.maxtemp_f,
+      "maxWind": data.forecast.forecastday[4].day.maxwind_mph,
+      "minTemp": data.forecast.forecastday[4].day.mintemp_f,
+      "minTemp": data.forecast.forecastday[4].day.mintemp_f,
+    },
+    {
+      "name": weekdays[currDay + 5 > 6 ? currDay + 5 - 7 : currDay + 5],
+      "sunrise": data.forecast.forecastday[5].astro.sunrise,
+      "sunset": data.forecast.forecastday[5].astro.sunset,
+      "sunset": data.forecast.forecastday[5].astro.sunset,
+      "avgHumidity": data.forecast.forecastday[5].day.avghumidity,
+      "avgTemp": data.forecast.forecastday[5].day.avgtemp_f,
+      "chanceOfRain": data.forecast.forecastday[5].day.daily_chance_of_rain,
+      "chanceOfSnow": data.forecast.forecastday[5].day.daily_chance_of_snow,
+      "willRain": data.forecast.forecastday[5].day.daily_will_it_rain,
+      "willSnow": data.forecast.forecastday[5].day.daily_will_it_snow,
+      "maxTemp": data.forecast.forecastday[5].day.maxtemp_f,
+      "maxWind": data.forecast.forecastday[5].day.maxwind_mph,
+      "minTemp": data.forecast.forecastday[5].day.mintemp_f,
+      "minTemp": data.forecast.forecastday[5].day.mintemp_f,
+    },
+    {
+      "name": weekdays[currDay + 6 > 6 ? currDay + 6 - 7 : currDay + 6],
+      "sunrise": data.forecast.forecastday[6].astro.sunrise,
+      "sunset": data.forecast.forecastday[6].astro.sunset,
+      "sunset": data.forecast.forecastday[6].astro.sunset,
+      "avgHumidity": data.forecast.forecastday[6].day.avghumidity,
+      "avgTemp": data.forecast.forecastday[6].day.avgtemp_f,
+      "chanceOfRain": data.forecast.forecastday[6].day.daily_chance_of_rain,
+      "chanceOfSnow": data.forecast.forecastday[6].day.daily_chance_of_snow,
+      "willRain": data.forecast.forecastday[6].day.daily_will_it_rain,
+      "willSnow": data.forecast.forecastday[6].day.daily_will_it_snow,
+      "maxTemp": data.forecast.forecastday[6].day.maxtemp_f,
+      "maxWind": data.forecast.forecastday[6].day.maxwind_mph,
+      "minTemp": data.forecast.forecastday[6].day.mintemp_f,
+      "minTemp": data.forecast.forecastday[6].day.mintemp_f,
+    },
+  ]
 
   const currTime = `
     ${hour <= 12 ? hour : hour - 12}:${minute} ${hour < 12 ? "am" : "pm"}
-  `
-  place.textContent = `${weatherData.location.name}, ${weatherData.location.region}, ${weatherData.location.country}`
-  time.textContent = currTime
-  temp.textContent = `${weatherData.current.temp_f}\u{00B0}F`
-  condition.textContent = `${weatherData.current.condition.text}`
-  conditionImg.src = conditionDict[weatherData.current.condition.text];
-  humid.textContent = `${weatherData.current.humidity} %`
-  wind.textContent = `${weatherData.current.wind_mph} mph`
-  precip.textContent = `${weatherData.current.precip_in} in`
-  uv.textContent = `${weatherData.current.uv} (${weatherData.current.uv < 3 ? "Low" :
-    weatherData.current.uv < 6 ? "Moderate" :
-      weatherData.current.uv < 8 ? "High" :
-        weatherData.current.uv < 9 ? "Very High" :
-          "Extreme"})`
-  vis.textContent = `${weatherData.current.vis_miles} mi`
+  `;
+  place.textContent = `${data.location.name}, ${data.location.region}, ${data.location.country}`;
+  time.textContent = currTime;
+  temp.textContent = `${data.current.temp_f}\u{00B0}F`;
+  condition.textContent = `${data.current.condition.text}`;
+  conditionImg.src = conditionDict[data.current.condition.text];
+  humid.textContent = `${data.current.humidity} %`;
+  wind.textContent = `${data.current.wind_mph} mph`;
+  precip.textContent = `${data.current.precip_in} in`;
+  uv.textContent = `${data.current.uv} (${data.current.uv < 3 ? "Low" :
+    data.current.uv < 6 ? "Moderate" :
+      data.current.uv < 8 ? "High" :
+        data.current.uv < 9 ? "Very High" :
+          "Extreme"})`;
+  vis.textContent = `${data.current.vis_miles} mi`;
 
- weatherData
-}
 
-search.value = "los angeles"
+  day1name.textContent = days[0].name;
+  day1temp.textContent = `Avg. Temp: ${days[0].avgTemp}\u00B0F`;
+  day1chanceOfRain.textContent = `${days[0].chanceOfRain}% Chance of Rain`;
+  day2name.textContent = days[1].name;
+  day2temp.textContent = `Avg. Temp: ${days[1].avgTemp}\u00B0F`;
+  day2chanceOfRain.textContent = `${days[1].chanceOfRain}% Chance of Rain`;
+  day3name.textContent = days[2].name;
+  day3temp.textContent = `Avg. Temp: ${days[2].avgTemp}\u00B0F`;
+  day3chanceOfRain.textContent = `${days[2].chanceOfRain}% Chance of Rain`;
+  day4name.textContent = days[3].name;
+  day4temp.textContent = `Avg. Temp: ${days[3].avgTemp}\u00B0F`;
+  day4chanceOfRain.textContent = `${days[3].chanceOfRain}% Chance of Rain`;
+  day5name.textContent = days[4].name;
+  day5temp.textContent = `Avg. Temp: ${days[4].avgTemp}\u00B0F`;
+  day5chanceOfRain.textContent = `${days[4].chanceOfRain}% Chance of Rain`;
+  day6name.textContent = days[5].name;
+  day6temp.textContent = `Avg. Temp: ${days[5].avgTemp}\u00B0F`;
+  day6chanceOfRain.textContent = `${days[5].chanceOfRain}% Chance of Rain`;
+  day7name.textContent = days[6].name;
+  day7temp.textContent = `Avg. Temp: ${days[6].avgTemp}\u00B0F`;
+  day7chanceOfRain.textContent = `${days[6].chanceOfRain}% Chance of Rain`;
 
-getData("los angeles")
+};
+
+
+search.value = "los angeles";
+
+updateWeatherFields("los angeles");
 
 search.addEventListener('input', e => {
-  getData(search.value);
-})
+  updateWeatherFields(search.value);
+});
 
 // FULL WEATHER JSON OBJECT----
 // {location: {…}, current: {…}}

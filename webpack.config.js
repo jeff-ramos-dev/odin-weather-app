@@ -4,6 +4,11 @@ const path = require('path');
 module.exports = {
   mode: 'production',
   entry: './src/index.js',
+  devServer: {
+    client: {
+      overlay: false
+    }
+  },
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
