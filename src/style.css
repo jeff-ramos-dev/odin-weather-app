@@ -95,7 +95,7 @@ input {
 }
 
 .day {
-  height: 100px;
+  height: 200px;
   width: 80vw;
   border: 2px solid black;
   border-radius: 10px;
@@ -109,7 +109,6 @@ input {
 
 .forecast-data {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   width: 100%;
   place-items: center;
 }

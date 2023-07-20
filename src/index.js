@@ -25,24 +25,18 @@ const vis = document.querySelector('.vis-data');
 const day1name = document.querySelector('.one>.weekday');
 const day1temp = document.querySelector('.one>.forecast-data>.avg-temp');
 const day1chanceOfRain = document.querySelector('.one>.forecast-data>.chance-of-rain');
+const day1sunrise = document.querySelector('.one>.forecast-data>.sunrise');
+const day1sunset = document.querySelector('.one>.forecast-data>.sunset');
 const day2name = document.querySelector('.two>.weekday');
 const day2temp = document.querySelector('.two>.forecast-data>.avg-temp');
 const day2chanceOfRain = document.querySelector('.two>.forecast-data>.chance-of-rain');
+const day2sunrise = document.querySelector('.two>.forecast-data>.sunrise');
+const day2sunset = document.querySelector('.two>.forecast-data>.sunset');
 const day3name = document.querySelector('.three>.weekday');
 const day3temp = document.querySelector('.three>.forecast-data>.avg-temp');
 const day3chanceOfRain = document.querySelector('.three>.forecast-data>.chance-of-rain');
-const day4name = document.querySelector('.four>.weekday');
-const day4temp = document.querySelector('.four>.forecast-data>.avg-temp');
-const day4chanceOfRain = document.querySelector('.four>.forecast-data>.chance-of-rain');
-const day5name = document.querySelector('.five>.weekday');
-const day5temp = document.querySelector('.five>.forecast-data>.avg-temp');
-const day5chanceOfRain = document.querySelector('.five>.forecast-data>.chance-of-rain');
-const day6name = document.querySelector('.six>.weekday');
-const day6temp = document.querySelector('.six>.forecast-data>.avg-temp');
-const day6chanceOfRain = document.querySelector('.six>.forecast-data>.chance-of-rain');
-const day7name = document.querySelector('.seven>.weekday');
-const day7temp = document.querySelector('.seven>.forecast-data>.avg-temp');
-const day7chanceOfRain = document.querySelector('.seven>.forecast-data>.chance-of-rain');
+const day3sunrise = document.querySelector('.three>.forecast-data>.sunrise');
+const day3sunset = document.querySelector('.three>.forecast-data>.sunset');
 
 
 const search = document.getElementById('search');
@@ -188,12 +182,18 @@ async function updateWeatherFields(query) {
   day1name.textContent = days[0].name;
   day1temp.textContent = `Avg. Temp: ${days[0].avgTemp}\u00B0F`;
   day1chanceOfRain.textContent = `${days[0].chanceOfRain}% Chance of Rain`;
+  day1sunrise.textContent = `Sunrise: ${days[0].sunrise}`;
+  day1sunset.textContent = `Sunset: ${days[0].sunset}`;
   day2name.textContent = days[1].name;
   day2temp.textContent = `Avg. Temp: ${days[1].avgTemp}\u00B0F`;
   day2chanceOfRain.textContent = `${days[1].chanceOfRain}% Chance of Rain`;
+  day2sunrise.textContent = `Sunrise: ${days[1].sunrise}`;
+  day2sunset.textContent = `Sunset: ${days[1].sunset}`;
   day3name.textContent = days[2].name;
   day3temp.textContent = `Avg. Temp: ${days[2].avgTemp}\u00B0F`;
   day3chanceOfRain.textContent = `${days[2].chanceOfRain}% Chance of Rain`;
+  day3sunrise.textContent = `Sunrise: ${days[2].sunrise}`;
+  day3sunset.textContent = `Sunset: ${days[2].sunset}`;
 };
 
 
