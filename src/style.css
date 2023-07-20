@@ -63,6 +63,7 @@ input {
 .condition-img {
   height: 70px;
   width: fit-content;
+  max-width: 100px;
 }
 
 .condition-text {
