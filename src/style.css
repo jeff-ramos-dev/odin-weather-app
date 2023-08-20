@@ -42,6 +42,7 @@ span {
 
 .location {
   text-align: center;
+  text-decoration: underline;
 }
 
 .category {
